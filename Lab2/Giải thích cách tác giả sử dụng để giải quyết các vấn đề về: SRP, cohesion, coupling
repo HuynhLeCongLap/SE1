@@ -1,0 +1,40 @@
+
+***Để giải quyết các vấn đề liên quan đến SRP (Single Responsibility Principle), cohesion và coupling, các tác giả trong lĩnh vực phần mềm thường đưa ra các phương pháp và kỹ thuật để cải thiện thiết kế và cấu trúc hệ thống phần mềm. Dưới đây là cách các tác giả giải quyết các vấn đề này:
+
+1. SRP (Single Responsibility Principle)
+SRP là một nguyên lý trong thiết kế phần mềm, chỉ ra rằng mỗi lớp hoặc mô-đun trong hệ thống nên có một lý do duy nhất để thay đổi, nghĩa là nó chỉ nên có một trách nhiệm duy nhất.
+
+-Cách giải quyết:
++Chia nhỏ các lớp và mô-đun: Tác giả thường khuyến khích việc chia các lớp phức tạp thành những lớp đơn giản hơn, mỗi lớp chỉ tập trung vào một nhiệm vụ cụ thể. Ví dụ, nếu một lớp vừa xử lý dữ liệu và lại vừa quản lý việc lưu trữ, tác giả sẽ chia nó thành hai lớp riêng biệt, mỗi lớp chịu trách nhiệm cho một phần công việc.
+
++Tạo các mô-đun dịch vụ: Mỗi mô-đun hoặc lớp dịch vụ sẽ thực hiện một loại nghiệp vụ cụ thể, giúp giảm thiểu việc thay đổi liên quan đến nhiều chức năng trong cùng một lớp.
+
++Refactor mã nguồn: Khi mã trở nên khó bảo trì, tác giả sẽ thực hiện việc tái cấu trúc mã nguồn (refactor) để tách các chức năng riêng biệt vào các lớp hoặc mô-đun khác nhau, từ đó đảm bảo rằng mỗi lớp chỉ có một trách nhiệm duy nhất.
+
+2. Cohesion (Sự kết dính)
+Cohesion đề cập đến mức độ mà các thành phần trong một lớp hoặc mô-đun liên kết chặt chẽ với nhau để thực hiện một chức năng cụ thể. Sự kết dính cao có nghĩa là các phương thức và thuộc tính trong lớp có mối quan hệ mật thiết và phục vụ một mục đích duy nhất.
+
+-Cách giải quyết:
++Tổ chức mã theo chức năng: Các tác giả sẽ đảm bảo rằng các phương thức và dữ liệu trong một lớp được tổ chức sao cho chúng chỉ phục vụ một mục đích duy nhất. Nếu một lớp có quá nhiều chức năng không liên quan, sẽ cần phải chia lớp thành các lớp nhỏ hơn để cải thiện sự kết dính.
+
++Chạy thử và kiểm tra: Tác giả có thể sử dụng các kỹ thuật kiểm thử (test-driven development, TDD) để đảm bảo rằng các lớp có sự kết dính cao và mỗi lớp có thể được kiểm tra dễ dàng trong các tình huống cụ thể.
+
++Tránh lớp “God class”: Tác giả khuyến khích không nên để một lớp quá phức tạp, đảm nhận quá nhiều chức năng, từ đó làm giảm sự kết dính. Việc này có thể dẫn đến khó bảo trì và tăng nguy cơ lỗi.
+
+3. Coupling (Sự phụ thuộc giữa các thành phần)
+Coupling mô tả mức độ phụ thuộc giữa các lớp hoặc mô-đun trong hệ thống. Low coupling (sự phụ thuộc thấp) là mục tiêu mong muốn, vì nó giúp giảm độ phức tạp, dễ bảo trì và phát triển.
+
+-Cách giải quyết:
++Giảm phụ thuộc trực tiếp: Tác giả khuyến khích việc sử dụng các kỹ thuật như Dependency Injection (DI) để giảm sự phụ thuộc trực tiếp giữa các lớp. Thay vì tạo ra đối tượng trong lớp, tác giả sẽ tiêm các phụ thuộc vào lớp từ bên ngoài, giúp lớp ít phụ thuộc vào các thành phần khác và dễ dàng thay thế hơn.
+
++Interface và abstraction: Một trong những cách để giảm coupling là sử dụng các interface hoặc abstraction. Thay vì các lớp phụ thuộc trực tiếp vào các lớp cụ thể, chúng sẽ phụ thuộc vào các interface chung hoặc các lớp trừu tượng, từ đó giảm sự phụ thuộc vào các chi tiết triển khai cụ thể.
+
++Sử dụng mô hình kiến trúc hợp lý: Ví dụ, trong kiến trúc Layered Architecture (kiến trúc theo lớp), các lớp cao hơn sẽ không phụ thuộc vào các lớp thấp hơn. Các lớp này chỉ giao tiếp với nhau thông qua các lớp trung gian (như controller hoặc service), giúp giảm sự phụ thuộc giữa các lớp.
+
++Sử dụng các pattern thiết kế: Các pattern như Observer, Strategy, Factory, ... giúp giảm coupling và cải thiện khả năng mở rộng của hệ thống bằng cách thay thế việc phụ thuộc trực tiếp vào các lớp cụ thể bằng các chiến lược hoặc các lớp trung gian.
+
+-Tóm tắt:
++SRP: Đảm bảo rằng mỗi lớp chỉ có một trách nhiệm duy nhất, từ đó dễ bảo trì và mở rộng.
++Cohesion: Tổ chức mã sao cho các phương thức trong lớp có mối quan hệ mật thiết với nhau, làm cho lớp trở nên đơn giản và dễ hiểu.
++Coupling: Giảm sự phụ thuộc giữa các lớp bằng cách sử dụng các kỹ thuật như Dependency Injection, interfaces và abstraction, giúp hệ thống dễ dàng bảo trì và mở rộng.
+*Việc áp dụng đúng các nguyên lý này giúp tạo ra hệ thống phần mềm dễ bảo trì, mở rộng, và có khả năng tái sử dụng cao.
